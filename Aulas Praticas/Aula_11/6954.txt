@@ -1,0 +1,297 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (22/04/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int main()
+{
+    int *num;
+    num = (int *)malloc(5 * sizeof(int));
+
+    if (num == NULL)
+    {
+        printf("Erro: Sem espaço de memoria");
+        exit(1);
+    }
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("Digite um valor: ");
+        scanf("%d", &num[cont]);
+    }
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("%d ", num[cont]);
+    }
+
+    free(num);
+    return 0;
+}
+
+EXERCICIO 2:
+#include <stdio.h>
+
+typedef struct sAluno
+{
+    int matricula;
+    char sobrenome[10];
+    int ano;
+} Aluno;
+
+int main()
+{
+    Aluno *aluno;
+
+    int qntd;
+
+    printf("Digite a quantidade de alunos: ");
+    scanf("%d", &qntd);
+
+    aluno = (Aluno *)malloc(qntd * sizeof(Aluno));
+    if (aluno == NULL)
+    {
+        printf("Erro: Sem memoria disponivel");
+        exit(1);
+    }
+
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        printf("\nDigite a matricula: ");
+        scanf("%d", &aluno[cont].matricula);
+
+        printf("Digite o sobrenome: ");
+        getchar();
+        gets(aluno[cont].sobrenome);
+
+        printf("Digite o ano de Nasc: ");
+        scanf("%d", &aluno[cont].ano);
+    }
+
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        printf("%d %s %d\n", aluno[cont].matricula, aluno[cont].sobrenome, aluno[cont].ano);
+    }
+
+    free(aluno);
+    return 0;
+}
+
+EXERCICIO 3:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sCliente
+{
+    char nome[50];
+    int idade;
+    int telefone;
+} Cliente;
+
+void lerDados(Cliente *cliente, int qntd)
+{
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        printf("\nDigite o nome: ");
+        getchar();
+        gets(cliente[cont].nome);
+
+        printf("Digite a idade: ");
+        scanf("%d", &cliente[cont].idade);
+
+        printf("Digite o telefone: ");
+        scanf("%d", &cliente[cont].telefone);
+    }
+}
+
+void imprimeDados(Cliente *cliente, int qntd)
+{
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        printf("\n%s\n%d\n%d\n\n", cliente[cont].nome, cliente[cont].idade, cliente[cont].telefone);
+    }
+}
+
+int main()
+{
+    Cliente *cliente;
+    int qntd;
+
+    printf("Digite a quantidade de clientes: ");
+    scanf("%d", &qntd);
+
+    cliente = (Cliente *)malloc(qntd * sizeof(Cliente));
+    if (cliente == NULL)
+    {
+        printf("Erro: Sem memoria disponivel");
+        exit(1);
+    }
+
+    lerDados(cliente, qntd);
+    imprimeDados(cliente, qntd);
+
+    free(cliente);
+    return 0;
+}
+
+EXERCICIO 4:
+#include <stdio.h>
+
+void preencheVetor(int *num, int qntd)
+{
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        printf("Digite um valor: ");
+        scanf("%d", &num[cont]);
+    }
+}
+
+void imprimeVetor(int *num, int qntd)
+{
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        printf("\n%d ", num[cont]);
+    }
+}
+
+int maiorPar(int *num, int qntd)
+{
+    int maiorPar = 0;
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        if (num[cont] > maiorPar && num[cont] % 2 == 0)
+        {
+            maiorPar = num[cont];
+        }
+    }
+    return maiorPar;
+}
+
+int menorImpar(int *num, int qntd)
+{
+    int menorImpar = 9999;
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        if (num[cont] < menorImpar && num[cont] % 2 != 0)
+        {
+            menorImpar = num[cont];
+        }
+    }
+    return menorImpar;
+}
+
+int media(int *num, int qntd)
+{
+    int soma = 0, media;
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        soma += num[cont];
+    }
+    return media = soma / qntd;
+}
+
+int main()
+{
+    int *num, qntd;
+
+    printf("Digite a quantidade de valores: ");
+    scanf("%d", &qntd);
+
+    num = (int *)malloc(qntd * sizeof(int));
+    if (num == NULL)
+    {
+        printf("Erro: Sem espaço de memoria");
+        exit(1);
+    }
+
+    preencheVetor(num, qntd);
+    imprimeVetor(num, qntd);
+    printf("\n\nMaior Par: %d", maiorPar(num, qntd));
+    printf("\nMenor Impar: %d", menorImpar(num, qntd));
+    printf("\nMedia: %d", media(num, qntd));
+
+    free(num);
+    return 0;
+}
+
+EXERCICIO 5:
+#include <stdio.h>
+
+int **aloca_matriz(int **mat, int lin, int cols)
+{
+    mat = malloc(lin * sizeof(int *));
+
+    for (int cont = 0; cont < lin; cont++)
+    {
+        mat[cont] = malloc(cols * sizeof(int));
+    }
+
+    return mat;
+}
+
+void libera_matriz(int **mat, int lines)
+{
+    for (int cont = 0; cont < lines; cont++)
+    {
+        free(mat[cont]);
+    }
+    free(mat);
+}
+
+int retorna(int **mat, int lines, int cols, int num)
+{
+    for (int cont = 0; cont < lines; cont++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (mat[j][cont] == num)
+            {
+                return printf("\n%d ", 1);
+            }
+            else
+            {
+                return printf("\n%d ", 0);
+            }
+        }
+    }
+}
+int main()
+{
+    int **mat = NULL, lines, cols, num;
+
+    printf("Digite qntd de linhas: ");
+    scanf("%d", &lines);
+
+    printf("Digite qntd de colunas: ");
+    scanf("%d", &cols);
+
+    mat = aloca_matriz(mat, lines, cols);
+
+    for (int i = 0; i < lines; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            printf("Matriz [%d][%d]: ", i, j);
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    printf("\n\n");
+    for (int i = 0; i < lines; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nQual numero quer verificar: ");
+    scanf("%d", &num);
+
+    retorna(mat, lines, cols, num);
+
+    libera_matriz(mat, lines);
+    return 0;
+}

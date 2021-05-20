@@ -1,0 +1,160 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (15/04/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int potencia(x, z)
+{
+    int pow = 1;
+    for (int cont = 0; cont < z; cont++)
+    {
+        pow *= x;
+    }
+
+    return pow;
+}
+
+int main()
+{
+    int x, z;
+
+    printf("Digite base e a potencia: ");
+    scanf("%d%d", &x, &z);
+
+    printf("%d elevado a %d = %d", x, z, potencia(x, z));
+    return 0;
+}
+
+EXERCICIO 2:
+#include <stdio.h>
+
+int main()
+{
+    int var = 10;
+    int *pvar;
+
+    pvar = &var;
+
+    printf("%d", *pvar);
+
+    return 0;
+}
+
+EXERCICIO 3:
+#include <stdio.h>
+
+int main()
+{
+    int num = 10;
+    int *p1, *p2;
+
+    p1 = &num;
+    p2 = p1;
+
+    printf("P1: %d\nP2: %d", p1, p2);
+    
+    return 0;
+}
+
+EXERCICIO 4:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sPessoa
+{
+    char nome[20];
+    int idade;
+} Pessoa;
+
+int main()
+{
+    Pessoa p = {"Victor", 19};
+
+    int *pidade;
+
+    pidade = &p.idade;
+
+    printf("%s %d", p.nome, *pidade);
+
+    return 0;
+}
+
+
+EXERCICIO 5:
+#include <stdio.h>
+
+int incrementa(int *num)
+{
+    return *num += 2;
+}
+
+int main()
+{
+    int N;
+    printf("Digite um valor: ");
+    scanf("%d", &N);
+
+    for (int cont = 0; cont < N; cont++)
+    {
+
+        if (cont % 2 != 0)
+        {
+            printf("%d ", cont);
+        }
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 6:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sAluno
+{
+    char nome[20];
+    char matricula[4];
+    float nota;
+} Aluno;
+
+void aluno(char nome[20], char matricula[4], float nota)
+{
+
+    int maior = 0;
+    char melhor[20], mat[4];
+    if (nota > maior)
+    {
+        maior = nota;
+        strcpy(mat, matricula);
+        strcpy(melhor, nome);
+    }
+    printf("\n%s", melhor);
+    printf("\n%s", mat);
+    printf("\n%.2f", maior);
+}
+
+int main()
+{
+    Aluno alunos[3];
+
+    for (int cont = 0; cont < 3; cont++)
+    {
+        printf("\n\nDigite nome do aluno %d:", cont + 1);
+        fflush(stdin);
+        gets(alunos[cont].nome);
+
+        printf("Digite a matricula: ");
+        fflush(stdin);
+        gets(alunos[cont].matricula);
+
+        printf("Digite a nota: ");
+        scanf("%f", &alunos[cont].nota);
+    }
+    for (int cont = 0; cont < 3; cont++)
+    {
+        aluno(alunos[cont].nome, alunos[cont].matricula, alunos[cont].nota);
+    }
+    return 0;
+}

@@ -1,0 +1,209 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (13/05/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+#include <stdlib.h>
+
+int ImprimeNum(int num)
+{
+    printf("%d -> ", num);
+    int n = (num == 1) ? 1 : ImprimeNum(num - 1);
+    return n;
+}
+
+int main()
+{
+    int num;
+
+    ImprimeNum(10);
+    printf("FIM!");
+
+    return 0;
+}
+
+
+EXERCICIO 2:
+#include <stdio.h>
+#include <stdlib.h>
+
+int soma(int num)
+{
+    int n = (num == 1) ? 1 : num + soma(num - 1);
+    return n;
+}
+
+int main()
+{
+    int num;
+
+    printf("Digite o valor de num: ");
+    scanf("%d", &num);
+
+    printf("A soma dos numeros de 1 ate %d = %d", num, soma(num));
+
+    return 0;
+}
+
+
+EXERCICIO 3:
+#include <stdio.h>
+#include <stdlib.h>
+
+int fib(int num)
+{
+    int n = (num == 0 || num == 1) ? num : fib(num - 2) + fib(num - 1);
+    return n;
+}
+
+int main()
+{
+    int num;
+
+    printf("Digite o valor de num: ");
+    scanf("%d", &num);
+
+    printf("\nFibonacci de %d = %d ", num, fib(num));
+
+    return 0;
+}
+
+
+EXERCICIO 4:
+#include <stdio.h>
+#include <stdlib.h>
+
+int ImprimeNum(int num)
+{
+    int n = (num == 1) ? 1 : ImprimeNum(num - 1);
+    printf("%d -> ", num);
+    return n;
+}
+
+int main()
+{
+    int num;
+
+    ImprimeNum(10);
+    printf("FIM!");
+
+    return 0;
+}
+
+
+EXERCICIO 5:
+#include <stdio.h>
+#include <stdlib.h>
+
+char ImprimeVog(int cont, char *vogal)
+{
+    char v = (vogal[cont] == '\0') ? 1 : ImprimeVog(cont + 1, vogal);
+    printf("%c -> ", vogal[cont]);
+    return v;
+}
+
+int main()
+{
+    char vogal[] = {"AEIOU"};
+
+    ImprimeVog(0, vogal);
+    printf("FIM!");
+
+    return 0;
+}
+
+
+EXERCICIO 6:
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct sAluno
+{
+    char nome[20];
+    int mat;
+    float CR;
+} Aluno;
+
+void Imprimir(Aluno aluno[], int cont)
+{
+    (cont < 10) ? 1 : Imprimir(aluno, cont + 1);
+    printf("%s - %d - %.2f", aluno[cont].nome, aluno[cont].mat, aluno[cont].CR);
+}
+
+int main()
+{
+    Aluno aluno[10];
+
+    for (int cont = 0; cont < 10; cont++)
+    {
+        printf("\nDigite o nome do aluno %d: ", cont + 1);
+        getchar();
+        gets(aluno[cont].nome);
+
+        printf("Digite a matricula: ");
+        scanf("%d", &aluno[cont].mat);
+
+        printf("Digite o CR: ");
+        getchar();
+        scanf("%f", &aluno[cont].mat);
+    }
+
+    Imprimir(aluno, 10);
+
+    return 0;
+}
+
+
+EXERCICIO 7:
+#include <stdio.h>
+#include <stdlib.h>
+
+int somatorio(int num, int cont)
+{
+    int v = (num == cont) ? cont : num + somatorio(num + 1, cont);
+    return v;
+}
+
+int main()
+{
+    int num, result;
+
+    printf("Digite um valor: ");
+    scanf("%d", &num);
+
+    result = somatorio(num, 10);
+
+    printf("Somatorio de [%d, 10] = %d", num, result);
+
+    return 0;
+}
+
+
+EXERCICIO 8:
+#include <stdio.h>
+#include <stdlib.h>
+
+int ImprimeMenor(int vetor[], int cont, int menor)
+{
+
+    if (cont < 0)
+    {
+        return 1;
+    }
+
+    if (vetor[cont] < menor)
+    {
+        menor = vetor[cont];
+    }
+
+    return ImprimeMenor(vetor, cont - 1, menor);
+}
+
+int main()
+{
+    int vetor[] = {8, 2, 3, 5, 7, 11, 13, 17};
+
+    printf("Menor valor: %d", ImprimeMenor(vetor, 7, vetor[7]));
+
+    return 0;
+}

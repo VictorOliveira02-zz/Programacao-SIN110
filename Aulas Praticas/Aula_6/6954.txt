@@ -1,0 +1,161 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (11/03/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int main()
+{
+    int vetor[10], cont;
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        printf("Digite a posicao %d: ", cont + 1);
+        scanf("%d", &vetor[cont]);
+    }
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        printf("%d ", vetor[cont]);
+    }
+    return 0;
+}
+
+EXERCICIO 2:
+#include <stdio.h>
+
+int main()
+{
+    int vetor[10], cont, qnt = 0;
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        printf("Digite a posicao %d: ", cont + 1);
+        scanf("%d", &vetor[cont]);
+    }
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        if (vetor[cont] % 2 == 0)
+        {
+            qnt++;
+        }
+    }
+
+    printf("%d ", qnt);
+
+    return 0;
+}
+
+EXERCICIO 3:
+#include <stdio.h>
+
+int main()
+{
+    int vetor[10], cont, qnt2 = 0, qnt3 = 0, qnt5 = 0;
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        do
+        {
+            printf("Digite a posicao %d: ", cont + 1);
+            scanf(" %d", &vetor[cont]);
+        } while ((vetor[cont] < 0) || (vetor[cont] > 9));
+
+        switch (vetor[1])
+        {
+        case 2:
+            qnt2++;
+            break;
+        case 3:
+            qnt3++;
+            break;
+        case 5:
+            qnt5++;
+            break;
+        }
+    }
+
+    printf("%d %d %d", qnt2, qnt3, qnt5);
+
+    return 0;
+}
+
+EXERCICIO 4:
+#include <stdio.h>
+
+int main()
+{
+    int vetor[50], i, calc;
+
+    for (i = 0; i < 50; i++)
+    {
+        calc = (i + 5 * i) % (i + 1);
+        printf("%d ", calc);
+    }
+
+    return 0;
+}
+
+EXERCICIO 5:
+#include <stdio.h>
+
+int main()
+{
+    float vetor[15];
+    int opcao, cont;
+
+    for (cont = 0; cont < 15; cont++)
+    {
+        printf("Digite a posicao %d: ", cont + 1);
+        scanf("%f", &vetor[cont]);
+    }
+
+    printf("\nDigite sua opcao [1 || 2]:");
+    scanf(" %d", &opcao);
+
+    if (opcao == 1)
+    {
+        for (cont = 0; cont < 15; cont++)
+        {
+            printf("%.1f ", vetor[cont]);
+        }
+    }
+    else if (opcao == 2)
+    {
+        for (cont = 15; 0 < cont; cont--)
+        {
+            printf("%.2f ", vetor[cont]);
+        }
+    }
+    else
+    {
+        printf("Opcao Invalida!");
+    }
+
+    return 0;
+}
+
+EXERCICIO 6:
+#include <stdio.h>
+
+int main()
+{
+    char vetor[10];
+    int cont;
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        printf("Digite a letra da posicao %d: ", cont + 1);
+        scanf(" %c", &vetor[cont]);
+    }
+
+    for (cont = 0; cont < 10; cont++)
+    {
+        if (vetor[cont] == 'a' || vetor[cont] == 'e' || vetor[cont] == 'i' || vetor[cont] == 'o' || vetor[cont] == 'u')
+        {
+            printf("%c ", vetor[cont]);
+        }
+    }
+    return 0;
+}

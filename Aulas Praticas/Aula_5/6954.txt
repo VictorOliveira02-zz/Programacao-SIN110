@@ -1,0 +1,197 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (04/03/2021)
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int main()
+{
+
+    int num, parte_int, parte_float;
+    int soma_partes;
+
+    for (num = 1000; num <= 9999; num++)
+    {
+        parte_int = num / 100;
+        parte_float = num % 100;
+
+        soma_partes = (parte_int + parte_float) * (parte_int + parte_float);
+
+        if (num == soma_partes)
+        {
+            printf("\n%d possui a propiedade.", num);
+        }
+    }
+    return 0;
+}
+
+EXERCICIO 2:
+#include <stdio.h>
+
+int main()
+{
+    int cont, n = 10;
+
+    for (cont = 1; cont <= n; cont++)
+    {
+        if (n % cont == 0)
+        {
+            printf("%d\n", cont);
+        }
+    }
+    return 0;
+}
+
+EXERCICIO 3:
+#include <stdio.h>
+
+int main()
+{
+    int n, cont, soma = 0;
+
+    printf("Digite um valor: ");
+    scanf("%d", &n);
+
+    for (cont = 1; cont <= n; cont++)
+    {
+        soma += cont;
+        printf("\n%d", soma);
+    }
+
+    return 0;
+}
+
+EXERCICIO 4:
+#include <stdio.h>
+
+int main()
+{
+    int cont, soma, num = 4;
+
+    soma = 0;
+    for (cont = 0; cont < num; cont++)
+    {
+        soma += ((cont * 2) + 1);
+    }
+
+    printf("\n%d", soma);
+    return 0;
+}
+
+
+EXERCICIO5:
+#include <stdio.h>
+
+int main()
+{
+    int fatorial, num = 10;
+
+    for (fatorial = 1; num > 1; num--)
+    {
+        fatorial = fatorial * num;
+    }
+
+    printf("%d", fatorial);
+    return 0;
+}
+
+EXERCICIO 6:
+#include <stdio.h>
+
+int main()
+{
+    float maior = 0, menor = 0, preco_kwh, consumo, soma_consumo = 0, media_consumo;
+    int cont;
+
+    printf("Digite o preco do Kwh: ");
+    scanf("%f", &preco_kwh);
+
+    for (cont = 1; cont < 16; cont++)
+    {
+        printf("Digite o consumo da residencia %d: ", cont);
+        scanf("%f", &consumo);
+
+        soma_consumo += consumo;
+
+        if (cont == 1)
+        {
+            maior = consumo;
+            menor = consumo;
+        }
+        else if (consumo > maior)
+        {
+            maior = consumo;
+        }
+
+        else if (consumo < menor)
+        {
+            menor = consumo;
+        }
+    }
+
+    media_consumo = soma_consumo / 15;
+
+    printf("\nMedia: %.2f", media_consumo);
+    printf("\nMaior: %.2f", maior);
+    printf("\nMenor: %.2f", menor);
+
+    return 0;
+}
+
+EXERCICIO 7:
+#include <stdio.h>
+
+int main()
+{
+
+    int N, coluna, linha;
+    char letra;
+
+    printf("Digite uma LETRA e um NUMERO: ");
+    scanf("%c%d", &letra, &N);
+
+    for (coluna = 1; coluna <= N; coluna++)
+    {
+        printf(" %c", letra);
+    }
+    printf("\n");
+
+    for (linha = 2; linha < N; linha++) //LATERAIS
+    {
+        printf(" %c", letra); //CRIANDO AS VAZIAS
+        for (coluna = 2; coluna < N; coluna++)
+        {
+            printf("  ");
+        }
+        printf(" %c\n", letra); // ULTIMA LATERAL
+    }
+    for (coluna = 1; coluna <= N; coluna++) // PREENCHENDO ULTIMA LINHA
+    {
+        printf(" %c", letra);
+    }
+
+    return 0;
+}
+
+EXERCICIO 8:
+#include <stdio.h>
+
+int main()
+{
+    float num, soma = 0, MA, vezes;
+
+    printf("Quantos numeros desejos somar?  ");
+    scanf("%f", &vezes);
+
+    for (int cont = 0; cont < vezes; cont++)
+    {
+        printf("Digite o %d valor: ", cont + 1);
+        scanf(" %f", &num);
+
+        soma += num;
+    }
+    MA = 1 / vezes * soma;
+
+    printf("MA = %.2f", MA);
+
+    return 0;
+}

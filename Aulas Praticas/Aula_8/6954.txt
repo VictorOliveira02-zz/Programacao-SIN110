@@ -1,0 +1,260 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (25/03/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int main()
+{
+
+    char palavra[50];
+    int cont = 0;
+
+    printf("Digite uma palavra: ");
+    gets(palavra);
+
+    while (palavra[cont] != '\0')
+    {
+        cont++;
+    }
+
+    printf("%d\n", cont);
+
+    return 0;
+}
+
+// 1 - A
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+
+    char palavra[50];
+    gets(palavra);
+
+    printf("%d\n", strlen(palavra));
+
+    return 0;
+}
+
+
+EXERCICIO 2:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+
+    char palavra[20], palavra2[20];
+
+    gets(palavra);
+    gets(palavra2);
+
+    if (strcmp(palavra, palavra2) == 0)
+    {
+        printf("Sim");
+    }
+    else
+    {
+        printf("Nao");
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 3:
+#include <stdio.h>
+
+int main()
+{
+
+    char veiculos[5][20];
+    float consumo[5], maior;
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("Digite o nome do veiculo: ");
+        gets(veiculos[cont]);
+    }
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("Digite o respectivo consumo: ");
+        scanf("%f", &consumo[cont]);
+    }
+
+    maior = consumo[0];
+    int temp;
+    for (int cont = 1; cont < 5; cont++)
+    {
+        if (consumo[cont] > maior)
+        {
+            maior = consumo[cont];
+            temp = cont;
+        }
+    }
+
+    printf("\n%s", veiculos[temp]);
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("\n%s - %.2f", veiculos[cont], (1000 / consumo[cont]));
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 4:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+
+    char str[80], nome[60], ultimo[20], meio[20];
+
+    puts("Digite seu Primeiro Nome: ");
+    gets(nome);
+
+    puts("Digite seu Ultimo Nome: ");
+    gets(ultimo);
+
+    puts("Digite seu Nome do meio: ");
+    gets(meio);
+
+    strcpy(str, nome);
+    strcat(str, ultimo);
+    strcat(str, meio);
+
+    puts(str);
+
+    return 0;
+}
+
+
+EXERCICIO 5:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char string[20], inversa[20];
+
+    puts("Digite uma palavra: ");
+    gets(string);
+
+    strcpy(inversa, string);
+    strrev(inversa);
+
+    int str = strcmp(string, inversa);
+    if (str == 0)
+    {
+        puts("Sim");
+    }
+    else
+    {
+        puts("Nao");
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 6:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int cont, j, tamvo;
+    char string[20], vogais[] = "aeiouAEIOU";
+
+    tamvo = strlen(vogais);
+
+    puts("Digite uma palavra: ");
+    gets(string);
+
+    for (cont = 0; cont < strlen(string); cont++)
+    {
+
+        for (j = 0; j < tamvo; j++)
+            if (string[cont] == vogais[j])
+            {
+                break;
+            }
+        if (j == tamvo)
+            printf("%c", string[cont]);
+    }
+
+    return 0;
+}
+
+
+
+EXERCICIO 7:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    int cont, j, tamvo, contv = 0, contc = 0;
+    char string[20], vogais[] = "aeiouAEIOU";
+
+    tamvo = strlen(vogais);
+
+    puts("Digite uma palavra: ");
+    gets(string);
+
+    for (cont = 0; cont < strlen(string); cont++)
+    {
+
+        for (j = 0; j < tamvo; j++)
+            if (string[cont] == vogais[j])
+            {
+                contv++;
+                break;
+            }
+        if (j == tamvo)
+        {
+            contc++;
+        }
+    }
+
+    printf("Vogais: %d", contv);
+    printf("\nConsoantes: %d", contc);
+
+    return 0;
+}
+
+
+
+EXERCICIO 8:
+#include <stdio.h>
+
+int main()
+{
+
+    char string[20], letra1, letra2;
+
+    puts("Digite uma palavra: ");
+    gets(string);
+
+    printf("Digite duas letras: ");
+    fflush(stdin);
+    scanf("%c%c", &letra1, &letra2);
+
+    int tam = strlen(string);
+    for (int cont = 0; cont < tam; cont++)
+    {
+        if (string[cont] == letra1)
+        {
+            string[cont] = letra2;
+        }
+    }
+    printf("%s", string);
+
+        return 0;
+}

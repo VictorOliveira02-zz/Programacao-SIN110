@@ -1,0 +1,182 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (18/03/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int main()
+{
+
+    int matriz[5][5];
+    int cont, lin, col;
+
+    for (lin = 0; lin < 5; lin++)
+    {
+        for (col = 0; col < 5; col++)
+        {
+            printf("Digite os valores (%d,%d): ", lin, col);
+            scanf("%d", &matriz[lin][col]);
+        }
+    }
+
+    for (lin = 0; lin < 5; lin++)
+    {
+        for (col = 0; col < 5; col++)
+        {
+            if (lin == col)
+            {
+                printf(" %d ", matriz[lin][col]);
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 2:
+#include <stdio.h>
+
+int main()
+{
+    int matriz[4][4];
+    int cont, lin, col;
+
+    for (lin = 0; lin < 4; lin++)
+    {
+        for (col = 0; col < 4; col++)
+        {
+            printf("\nDigite os valores (%d,%d): ", lin, col);
+            scanf("%d", &matriz[lin][col]);
+        }
+    }
+
+    for (lin = 0; lin < 4; lin++)
+    {
+        for (col = 0; col < 4; col++)
+        {
+            printf("%d ", matriz[lin][col]);
+        }
+        printf("\n");
+    }
+
+    for (lin = 0; lin < 4; lin++)
+    {
+        for (col = 0; col < 4; col++)
+        {
+            if (matriz[lin][col] % 2 == 0)
+            {
+                printf("(%d,%d) ", lin, col);
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 3:
+#include <stdio.h>
+
+int main()
+{
+    float matriz[7][4], soma = 0;
+    int cont, lin, col;
+
+    for (lin = 0; lin < 7; lin++)
+    {
+        for (col = 0; col < 4; col++)
+        {
+            printf("\nDigite os valores (%d,%d): ", lin, col);
+            scanf("%f", &matriz[lin][col]);
+        }
+    }
+
+    for (lin = 0; lin < 7; lin++)
+    {
+        for (col = 0; col < 4; col++)
+        {
+            soma += matriz[lin][col];
+        }
+    }
+
+    printf("%.2f", soma);
+
+    return 0;
+}
+
+
+EXERCICIO 4:
+#include <stdio.h>
+
+int main()
+{
+    float matriz[3][3], soma = 0;
+    int cont, lin, col;
+
+    for (lin = 0; lin < 3; lin++)
+    {
+        for (col = 0; col < 3; col++)
+        {
+            printf("\nDigite os valores (%d,%d): ", lin, col);
+            scanf("%f", &matriz[lin][col]);
+        }
+    }
+
+    for (lin = 0; lin < 3; lin++)
+    {
+        for (col = 0; col < 3; col++)
+        {
+            soma += matriz[lin][col];
+        }
+    }
+
+    printf("%.2f", soma/9);
+
+    return 0;
+}
+
+
+EXERCICIO 5:
+#include <stdio.h>
+
+int main()
+{
+    int matriz[3][3];
+    int col, lin, maior = 0, menor = 9999999;
+
+    for (lin = 0; lin < 3; lin++)
+    {
+        for (col = 0; col < 3; col++)
+        {
+            printf("\nDigite linha e coluna (%d,%d):", lin, col);
+            scanf("%d", &matriz[lin][col]);
+        }
+    }
+
+    for (lin = 0; lin < 3; lin++)
+    {
+        for (col = 0; col < 3; col++)
+        {
+            if (matriz[lin][col] == 0)
+            {
+                maior = matriz[lin][col];
+                menor = matriz[lin][col];
+            }
+            else if (matriz[lin][col] > maior)
+            {
+                maior = matriz[lin][col];
+            }
+            else if (matriz[lin][col] < menor)
+            {
+                menor = matriz[lin][col];
+            }
+        }
+    }
+
+    printf("\nMaior: %d", maior);
+    printf("\nMenor: %d", menor);
+
+    return 0;
+}

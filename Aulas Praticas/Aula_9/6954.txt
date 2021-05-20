@@ -1,0 +1,378 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (08/04/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+
+typedef struct sHora
+{
+    int hora;
+    int minuto;
+    int segundo;
+} Hora;
+
+int main()
+{
+    Hora H;
+
+    printf("Digite a Hora: ");
+    scanf("%d", &H.hora);
+
+    printf("Digite o minuto: ");
+    scanf("%d", &H.minuto);
+
+    printf("Digite o segundo: ");
+    scanf("%d", &H.segundo);
+
+    printf("%d:%d:%.2d", H.hora, H.minuto, H.segundo);
+    return 0;
+}
+
+
+EXERCICIO 2:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sEndereco
+{
+    char nome[20];
+    int numero;
+    char cidade[20];
+    char estado[3];
+    int CEP;
+} Endereco;
+
+int main()
+{
+    Endereco end;
+
+    printf("Nome da Rua: ");
+    gets(end.nome);
+
+    printf("Numero da residencia: ");
+    fflush(stdin);
+    scanf("%d", &end.numero);
+
+    printf("Cidade: ");
+    fflush(stdin);
+    gets(end.cidade);
+
+    printf("Estado: ");
+    fflush(stdin);
+    scanf("%s", &end.estado);
+
+    printf("CEP: ");
+    fflush(stdin);
+    scanf("%d", &end.CEP);
+
+    printf("%s %d %s %s %.8d ", end.nome, end.numero, end.cidade, end.estado, end.CEP);
+
+    return 0;
+}
+
+
+EXERCICIO 3:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sData
+{
+    int dia;
+    int mes;
+    int ano;
+} Data;
+
+typedef struct sEndereco
+{
+    char rua[20];
+    int numero;
+    char bairro[20];
+    char estado[3];
+    int CEP;
+} Endereco;
+
+typedef struct sPessoa
+{
+    char nome[20];
+    int peso;
+    char sexo[10];
+    Data date;
+    Endereco address;
+} Pessoa;
+
+int main()
+{
+    Pessoa person;
+
+    printf("Nome: ");
+    gets(person.nome);
+
+    printf("Peso: ");
+    scanf("%d", &person.peso);
+
+    printf("Sexo: ");
+    fflush(stdin);
+    gets(person.sexo);
+
+    printf("Dia Nascimento: ");
+    scanf("%d", &person.date.dia);
+
+    printf("Mes Nascimento: ");
+    scanf("%d", &person.date.mes);
+
+    printf("Ano Nascimento: ");
+    scanf("%d", &person.date.ano);
+
+    printf("Rua: ");
+    fflush(stdin);
+    gets(person.address.rua);
+
+    printf("Numero da residencia: ");
+    fflush(stdin);
+    scanf("%d", &person.address.numero);
+
+    printf("Bairro: ");
+    fflush(stdin);
+    gets(person.address.bairro);
+
+    printf("Estado: ");
+    scanf("%s", &person.address.estado);
+
+    printf("CEP: ");
+    scanf("%d", &person.address.CEP);
+
+    printf("Nome: %s", person.nome);
+    printf("\nSexo: %s", person.sexo);
+    printf("\nPeso: %d", person.peso);
+    printf("\nData de Nasc: %d/%d/%d", person.date.dia, person.date.mes, person.date.ano);
+    printf("\n%s %d %s %s %.8d ", person.address.rua, person.address.numero, person.address.bairro, person.address.estado, person.address.CEP);
+
+    return 0;
+}
+
+
+EXERCICIO 4:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sCarros
+{
+    char modelo[20];
+} Carros;
+
+int main()
+{
+    Carros carro[5];
+    float consumo[5], maiorC = 0;
+    char maior[20];
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("Digite o nome do veiculo: ");
+        gets(carro[cont].modelo);
+    }
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("Digite o respectivo consumo: ");
+        fflush(stdin);
+        scanf("%f", &consumo[cont]);
+
+        if (consumo[cont] > maiorC)
+        {
+            strcpy(maior, carro[cont].modelo);
+        }
+    }
+
+    printf("\n%s", maior);
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("\n%s - %.2f", carro[cont].modelo, (1000 / consumo[cont]));
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 5:
+#include <stdio.h>
+
+typedef struct sAluno
+{
+    int matricula;
+    char nome[100];
+    float nota1;
+    float nota2;
+    float nota3;
+} Aluno;
+
+int main()
+{
+    Aluno alunos[5];
+
+    float maiorP1 = 0, maiorMedia = 0, menorMedia = 9999, media[5];
+    char melhorMedia[100], piorMedia[100];
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        printf("\nDigite o dado do Aluno: matricula, nome, P1, P2, P3\n");
+        printf("Aluno %d: ", cont + 1);
+        scanf("%d %s %f %f %f", &alunos[cont].matricula, alunos[cont].nome, &alunos[cont].nota1, &alunos[cont].nota2, &alunos[cont].nota3);
+
+        media[cont] = (alunos[cont].nota1 + alunos[cont].nota2 + alunos[cont].nota3) / 3;
+
+        if (media[cont] < menorMedia)
+        {
+            menorMedia = media[cont];
+            strcpy(piorMedia, alunos[cont].nome);
+        }
+
+        if (media[cont] > maiorMedia)
+        {
+            maiorMedia = media[cont];
+            strcpy(melhorMedia, alunos[cont].nome);
+        }
+
+        if (alunos[cont].nota1 > maiorP1)
+        {
+            maiorP1 = alunos[cont].nota1;
+        }
+    }
+
+    printf("\nAluno com maior media geral(%.2f): %s", maiorMedia, melhorMedia);
+    printf("\nAluno com menor media geral(%.2f): %s", menorMedia, piorMedia);
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        if (maiorP1 == alunos[cont].nota1)
+        {
+            printf("\nAluno com maior Nota P1(%.2f): %s", maiorP1, alunos[cont].nome);
+        }
+    }
+
+    for (int cont = 0; cont < 5; cont++)
+    {
+        if (media[cont] > 60)
+        {
+            printf("\nAPROVADO!");
+        }
+        else
+        {
+            printf("\nREPROVADO!");
+        }
+    }
+
+    return 0;
+}
+
+
+EXERCICIO 6:
+#include <stdio.h>
+#include <string.h>
+
+typedef struct sEndereco
+{
+    char rua[20];
+    char bairro[20];
+    char cidade[20];
+    char estado[3];
+    int CEP;
+} Endereco;
+
+typedef struct sCadastro
+{
+    char nome[20];
+    int RG;
+    int telefone;
+    Endereco end;
+    int CPF;
+    int idade;
+    float salario;
+    char estado_civil[20];
+    char sexo[10]
+} Cadastro;
+
+int main()
+{
+    Cadastro usuario[7];
+    int maiorIdade = 0;
+    char maisVelho[20], homens[7], salarioMil[7];
+
+    for (int cont = 0; cont < 7; cont++)
+    {
+        printf("\n\nDigite o nome do usuario: ");
+        gets(usuario[cont].nome);
+
+        printf("Digite o RG: ");
+        fflush(stdin);
+        scanf("%d", &usuario[cont].RG);
+
+        printf("Digite o telefone: ");
+        scanf("%d", &usuario[cont].telefone);
+
+        printf("Digite a Rua: ");
+        fflush(stdin);
+        gets(usuario[cont].end.rua);
+
+        printf("Digite o Bairro: ");
+        gets(usuario[cont].end.bairro);
+
+        printf("Digite a Cidade: ");
+        gets(usuario[cont].end.cidade);
+
+        printf("Digite o Estado: ");
+        gets(usuario[cont].end.estado);
+
+        printf("Digite o CEP: ");
+        fflush(stdin);
+        scanf("%d", &usuario[cont].end.CEP);
+
+        printf("Digite a CPF: ");
+        scanf("%d", &usuario[cont].CPF);
+
+        printf("Digite a idade: ");
+        scanf("%d", &usuario[cont].idade);
+
+        printf("Digite o salario: ");
+        scanf("%f", &usuario[cont].salario);
+
+        printf("Digite o Estado Civil: ");
+        fflush(stdin);
+        gets(usuario[cont].estado_civil);
+
+        printf("Digite o sexo: ");
+        gets(usuario[cont].sexo);
+
+        if (usuario[cont].idade > maiorIdade)
+        {
+            maiorIdade = usuario[cont].idade;
+            strcpy(maisVelho, usuario[cont].nome);
+            strcat(maisVelho, maisVelho);
+        }
+
+        if (usuario[cont].sexo == "masculino")
+        {
+            homens[cont] = usuario[cont].nome;
+        }
+
+        if (usuario[cont].salario > 1000)
+        {
+            salarioMil[cont] = usuario[cont].nome;
+        }
+    }
+
+    printf("\nMais velho: %s", maisVelho);
+    printf("\nHomens:");
+    for (int cont = 0; cont < strlen(homens); cont++)
+    {
+        printf("%s", homens[cont]);
+    }
+
+    printf("\nSalarios > 1000:");
+    for (int cont = 0; cont < strlen(salarioMil); cont++)
+    {
+        printf("%s", salarioMil[cont]);
+    }
+
+    return 0;
+}

@@ -1,0 +1,151 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (25/02/2021)
+
+EXERCICIO 1:
+#include <stdio.h>
+
+int main()
+{
+
+    int num1 = 4, num2 = 6;
+
+    if (num1 % 2 == 0)
+    {
+        printf("\nO numero %d eh par e", num1);
+    }
+    else
+    {
+        printf("\nO numero %d eh impar e", num1);
+    }
+
+
+    if (num1 > num2)
+    {
+        printf(" eh o maior");
+    }
+    else
+    {
+        printf(" eh o menor");
+    }
+
+
+    if (num2 % 2 == 0)
+    {
+        printf("\nO numero %d eh par e", num2);
+    }
+    else
+    {
+        printf("\nO numero %d eh impar e", num2);
+    }
+    if (num2 > num1)
+    {
+        printf(" eh o maior");
+    }
+    else
+    {
+        printf(" eh o menor");
+    }
+
+    return 0;
+}
+
+EXERCICIO 2:
+#include <stdio.h>
+
+int main()
+{
+
+    float nota = 1.5;
+    int matricula = 3221;
+
+    if (nota >= 9)
+    {
+        printf("%d\nConceito A", matricula);
+    }
+    else if (nota >= 8 && nota < 9)
+    {
+        printf("%d\nConceito B", matricula);
+    }
+    else if (nota >= 6 && nota < 8)
+    {
+        printf("%d\nConceito C", matricula);
+    }
+    else if (nota >= 3 && nota < 6)
+    {
+        printf("%d\nConceito D", matricula);
+    }
+    else if (nota < 3)
+    {
+        printf("%d\nConceito E", matricula);
+    }
+
+    return 0;
+}
+
+EXERCICIO 3:
+#include <stdio.h>
+
+int main()
+{
+    float num1, num2;
+    int opcao;
+
+    printf("Digite 2 numeros: ");
+    scanf("%f%f", &num1, &num2);
+
+    printf("POR FAVOR,ESCOLHA APENAS UMA DAS OPCOES ABAIXO.\n");
+    printf("[ 1 ] - SOMA.\n");
+    printf("[ 2 ] - SUBTRACAO.\n");
+    printf("[ 3 ] - DIVISAO.\n");
+    printf("[ 4 ] - MULTIPLICACAO.\n");
+    scanf("%d", &opcao);
+
+    switch (opcao)
+    {
+    case 1:
+        printf("%0.2f", num1 + num2);
+        break;
+    case 2:
+        printf("%0.2f", num1 - num2);
+        break;
+    case 3:
+        printf("%0.2f", num1 / num2);
+        break;
+    case 4:
+        printf("%0.2f", num1 * num2);
+        break;
+    }
+
+    
+    return 0;
+}
+
+EXERCICIO 4:
+#include <stdio.h>
+
+int main()
+{
+    char codigo = 'A';
+
+    if (codigo == 'A')
+    {
+        printf("Ventilador, Televisao");
+    }
+    else if (codigo == 'B')
+    {
+        printf("Aparelho de Som, Batedeira");
+    }
+    else if (codigo == 'C')
+    {
+        printf("Fogao eletrico, Liquidificador");
+    }
+    else if (codigo == 'D')
+    {
+        printf("Freezer, Geladeira, Maquina de Lavar");
+    }
+    else if (codigo == 'E')
+    {
+        printf("Ar-condicionado, Micro-ondas");
+    }
+
+    return 0;
+}

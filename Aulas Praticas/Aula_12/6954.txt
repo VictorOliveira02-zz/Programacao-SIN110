@@ -1,0 +1,375 @@
+VICTOR ALVES DE OLIVEIRA - 6954 - EXERCICIOS AULA PRATICA (06/05/2021)
+
+
+EXERCICIO 1:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *arquivo;
+
+    arquivo = fopen("resumo_TCC.txt", "w");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    int N;
+    char *texto;
+
+    printf("Digite a qntd de caracteres do resumo: ");
+    scanf("%d", &N);
+
+    texto = (char *)malloc(N * sizeof(char));
+    if (texto == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    getchar();
+    printf("Digite o resumo do TCC: ");
+    gets(texto);
+
+    for (int i = 0; i < strlen(texto); i++)
+    {
+        fputc(texto[i], arquivo);
+    }
+
+    fclose(arquivo);
+    free(texto);
+    return 0;
+}
+
+
+EXERCICIO 2:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *arquivo;
+
+    arquivo = fopen("resumo_TCC.txt", "r");
+
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    char texto;
+    texto = fgetc(arquivo);
+
+    while (texto != EOF)
+    {
+        printf("%c", texto);
+        texto = fgetc(arquivo);
+    }
+
+    fclose(arquivo);
+    return 0;
+}
+
+
+EXERCICIO 3:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+    FILE *arquivo;
+
+    arquivo = fopen("dialogo.txt", "w");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    int n;
+    char dialogo[20];
+
+    printf("Digite a qntd de dialogos: ");
+    scanf("%d", &n);
+
+    getchar();
+
+    for (int cont = 0; cont < n; cont++)
+    {
+        printf("Digite a %d fala: ", cont + 1);
+        gets(dialogo);
+        fputs(dialogo, arquivo);
+        fputc('\n', arquivo);
+    }
+
+    fclose(arquivo);
+    return 0;
+}
+
+
+EXERCICIO 4:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+    FILE *arquivo;
+
+    arquivo = fopen("dialogo.txt", "a");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    fputc("\n", arquivo);
+    fputs("FIM!", arquivo);
+
+    fclose(arquivo);
+    return 0;
+}
+
+
+EXERCICIO 5:
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct sFuncionario
+{
+    char nome[20];
+    int tempServico;
+} Funcionario;
+
+void cadastro(Funcionario funcionario[], int qntd)
+{
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        getchar();
+        printf("\nDigite o nome do %d funcionario: ", cont + 1);
+        gets(funcionario[cont].nome);
+
+        printf("Digite a qntd de anos de servico: ");
+        scanf("%d", &funcionario[cont].tempServico);
+    }
+}
+
+void salvar_txt(Funcionario funcionario[], int qntd)
+{
+    FILE *arquivo;
+    arquivo = fopen("emp.txt", "w");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        fprintf(arquivo, "%s %d\n", funcionario[cont].nome, funcionario[cont].tempServico);
+    }
+
+    fclose(arquivo);
+}
+
+void ler_txt(Funcionario funcionario[], int qntd)
+{
+    FILE *arquivo;
+    arquivo = fopen("emp.txt", "r");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    for (int cont = 0; cont < qntd; cont++)
+    {
+        fscanf(arquivo, "%s %d", funcionario[cont].nome, &funcionario[cont].tempServico);
+        printf("\n%s - %d", funcionario[cont].nome, funcionario[cont].tempServico);
+    }
+
+    fclose(arquivo);
+}
+
+int main()
+{
+    Funcionario funcionario[50];
+    int qntd;
+
+    printf("Digite a qntd de funcionarios para cadastrar: ");
+    scanf("%d", &qntd);
+
+    cadastro(funcionario, qntd);
+    salvar_txt(funcionario, qntd);
+    ler_txt(funcionario, qntd);
+
+    return 0;
+}
+
+
+EXERCICIO 6:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *arquivo;
+    arquivo = fopen("informacoes.txt", "wb");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    char marca[20] = "Volksvagem";
+    char cor[10] = "verde";
+    int n_porta = 4;
+    float preco = 35000;
+
+    fwrite(marca, sizeof(char), 20, arquivo);
+    fwrite(cor, sizeof(char), 10, arquivo);
+    fwrite(&n_porta, sizeof(int), 1, arquivo);
+    fwrite(&preco, sizeof(float), 1, arquivo);
+
+    fclose(arquivo);
+    return 0;
+}
+
+
+
+EXERCICIO 7:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *arquivo;
+    arquivo = fopen("informacoes.txt", "rb");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    char marca[20];
+    char cor[10];
+    int n_porta;
+    float preco;
+
+    fread(marca, sizeof(char), 20, arquivo);
+    fread(cor, sizeof(char), 10, arquivo);
+    fread(&n_porta, sizeof(int), 1, arquivo);
+    fread(&preco, sizeof(float), 1, arquivo);
+
+    printf("%s\n%s\n%d\n%.2f\n", marca, cor, n_porta, preco);
+
+    fclose(arquivo);
+    return 0;
+}
+
+
+
+EXERCICIO 8:
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct sCarros
+{
+    char marca[20];
+    char cor[10];
+    int n_porta;
+    float preco;
+} Carros;
+
+int main()
+{
+    FILE *arquivo;
+    arquivo = fopen("concessionaria.txt", "wb");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    Carros carro[20];
+    int qnt;
+
+    printf("Digite qnt de carros para cadastro: ");
+    scanf("%d", &qnt);
+
+    for (int cont = 0; cont < qnt; cont++)
+    {
+        fflush(stdin);
+        printf("\nDigite a marca do veiculo %d: ", cont + 1);
+        gets(carro[cont].marca);
+
+        printf("Digite a cor do veiculo: ");
+        gets(carro[cont].cor);
+
+        printf("Digite a qnt de portas: ");
+        fflush(stdin);
+        scanf("%d", &carro[cont].n_porta);
+
+        printf("Digite o preco do veiculo: ");
+        scanf("%f", &carro[cont].preco);
+    }
+
+    for (int cont = 0; cont < qnt; cont++)
+    {
+
+        fwrite(carro[cont].marca, sizeof(char), 20, arquivo);
+        fwrite(carro[cont].cor, sizeof(char), 10, arquivo);
+        fwrite(&carro[cont].n_porta, sizeof(int), 1, arquivo);
+        fwrite(&carro[cont].preco, sizeof(float), 1, arquivo);
+    }
+
+    fclose(arquivo);
+    return 0;
+}
+
+
+
+EXERCICIO 9:
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct sCarros
+{
+    char marca[20];
+    char cor[10];
+    int n_porta;
+    float preco;
+} Carros;
+
+int main()
+{
+    FILE *arquivo;
+    arquivo = fopen("concessionaria.txt", "rb");
+    if (arquivo == NULL)
+    {
+        printf("Error");
+        exit(1);
+    }
+
+    Carros carro[20];
+    for (int cont = 0; cont < 20; cont++)
+    {
+        fread(carro[cont].marca, sizeof(char), 20, arquivo);
+        fread(carro[cont].cor, sizeof(char), 10, arquivo);
+        fread(&carro[cont].n_porta, sizeof(int), 1, arquivo);
+        fread(&carro[cont].preco, sizeof(float), 1, arquivo);
+    }
+
+    for (int cont = 0; cont < 3; cont++)
+    {
+        printf("%s\n%s\n%d\n%.2f\n", carro[cont].marca, carro[cont].cor, carro[cont].n_porta, carro[cont].preco);
+    }
+
+    fclose(arquivo);
+    return 0;
+}
